@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #e8f5e9; /* Light Green */
+            background-color: #f3e5f5; /* Light Purple */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,7 +20,7 @@
             text-align: center;
             padding: 30px;
             border-radius: 10px;
-            background-color: #2e7d32; /* Deep Green */
+            background-color: #6a1b9a; /* Deep Purple */
             color: white;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             animation: fadeIn 1.5s ease-in-out;
@@ -43,7 +43,7 @@
 
         .btn {
             background-color: white;
-            color: green;
+            color: #6a1b9a; /* Deep Purple */
             border: none;
             padding: 12px 20px;
             font-size: 18px;
@@ -60,7 +60,7 @@
 
         .popup {
             display: none;
-            background-color: #2e7d32;
+            background-color: #6a1b9a; /* Deep Purple */
             color: white;
             padding: 20px;
             border-radius: 10px;
@@ -71,6 +71,7 @@
             transform: translate(-50%, -50%);
             text-align: center;
             animation: popIn 0.5s ease-in-out;
+            max-width: 90%;
         }
 
         .popup h2 {
@@ -80,9 +81,21 @@
             font-weight: 400;
         }
 
+        .popup ul {
+            list-style-type: none;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+
+        .popup ul li {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
         .btn-close {
             background-color: white;
-            color: green;
+            color: #6a1b9a; /* Deep Purple */
             padding: 8px 16px;
             border: none;
             border-radius: 5px;
@@ -122,9 +135,17 @@
     <div class="container">
         <h1 class="title">Day 3</h1>
         <p class="message">Release the weight of your parent's past mistakes by freeing them from your heart. This is hard, but it is pertinent you do, so you can step into your own future. This is the only way!</p>
-        <button onclick="showPopup()" class="btn">Click here for your special healing package 🎁</button>
+        <button onclick="showPopup()" class="btn">Click here for more</button>
 
         <div id="popup" class="popup">
+            <h2>Steps to Free Your Parents from Their Past Mistakes:</h2>
+            <ul>
+                <li>1. Acknowledge the pain and understand that it was not your fault.</li>
+                <li>2. Accept that your parents are human and made mistakes, just like everyone else.</li>
+                <li>3. Practice forgiveness by releasing the anger or resentment you carry.</li>
+                <li>4. Focus on building your own future, and let go of the weight of the past.</li>
+                <li>5. Embrace compassion and empathy, and understand that healing takes time.</li>
+            </ul>
             <h2>Yaay! Click on the link to earn your free gift: <br> 
                 <a href="https://youtu.be/MQ7zebFp8us?si=DX4DLKMfUmi60d0j" target="_blank" style="color: yellow; text-decoration: underline;">Watch Here</a>
             </h2>
