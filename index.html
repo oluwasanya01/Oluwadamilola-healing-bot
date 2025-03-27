@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oluwadamilola Healing Journey</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -12,10 +12,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      min-height: 100vh;
+      height: 100vh;
       margin: 0;
-      position: relative;
     }
 
     .container {
@@ -27,7 +25,6 @@
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
       width: 90%;
       max-width: 600px;
-      margin-bottom: 100px; /* space for footer */
     }
 
     .title {
@@ -66,7 +63,6 @@
     .nav-buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 20px;
     }
 
     .btn {
@@ -90,52 +86,9 @@
       cursor: not-allowed;
     }
 
-    .footer-note-container {
-      position: fixed;
-      bottom: 20px;
+    audio {
+      margin-top: 20px;
       width: 100%;
-      overflow: hidden;
-      background-color: #f3e5f5;
-      padding: 10px 0;
-      z-index: 1000;
-    }
-
-    .footer-note {
-      white-space: nowrap;
-      display: inline-block;
-      animation: scrollLeft 15s linear infinite;
-      color: #6a1b9a;
-      font-size: 16px;
-      font-weight: 500;
-    }
-
-    @keyframes scrollLeft {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-
-    .music-control {
-      margin: 15px 0;
-    }
-
-    .music-control button {
-      background-color: white;
-      color: #6a1b9a;
-      border: none;
-      padding: 10px 18px;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .music-control button:hover {
-      background-color: #f0c8ff;
     }
   </style>
 </head>
@@ -144,28 +97,10 @@
     <h1 class="title" id="dayTitle">Day 1</h1>
     <p class="message" id="healingMessage"></p>
     <div class="click-more" id="clickMoreContainer"></div>
-
-    <!-- Music Control -->
-    <div class="music-control">
-      <button onclick="playMusic()">Play Music</button>
-    </div>
-
+    <div id="audioPlayerContainer"></div>
     <div class="nav-buttons">
       <button class="btn" id="prevBtn" onclick="showPrevious()">Previous</button>
       <button class="btn" id="nextBtn" onclick="showNext()">Next</button>
-    </div>
-  </div>
-
-  <!-- Audio Element -->
-  <audio id="bgAudio" loop>
-    <source src="https://audio.jukehost.co.uk/No-Longer-Slaves.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-
-  <!-- Moving Footer -->
-  <div class="footer-note-container">
-    <div class="footer-note">
-      Your healing bot is censored, meaning information here will not be shared to the public.
     </div>
   </div>
 
@@ -175,13 +110,13 @@
       "Your source of healing is in good relationships. You're a magnet for great relationships and be sure that it will last.",
       "Release the weight of your parents’ past mistakes by freeing them from your heart. This will be hard, but you must do this to step into your future.",
       "Your failure to forgive the specific parent who hurt you could make you relive their past mistakes. Forgiving them means you free yourself from tendencies to repeat their error.",
-      "Know your defense/Coping mechanism, be extra vigilant when they kick in"
+      "Think about someone who hurt you deeply. What would you say to them in a letter you won’t send? Let it all out, free of judgment."
     ];
 
     const moreLinks = [
       "",     // Day 1
       "",     // Day 2
-      "",     // Day 3
+      "https://divineflaver.com/no-longer-slaves-bethel-music/",  // Day 3
       "more.html",  // Day 4
       "day5.html"   // Day 5
     ];
@@ -193,10 +128,24 @@
       document.getElementById("healingMessage").innerText = quotes[currentIndex];
 
       const clickMoreContainer = document.getElementById("clickMoreContainer");
+      const audioPlayerContainer = document.getElementById("audioPlayerContainer");
+
       if (moreLinks[currentIndex]) {
-        clickMoreContainer.innerHTML = `<a href="${moreLinks[currentIndex]}" target="_blank">Click for More 😊❤️</a>`;
+        clickMoreContainer.innerHTML = `<a href="${moreLinks[currentIndex]}" target="_blank">Click for More</a>`;
       } else {
         clickMoreContainer.innerHTML = "";
+      }
+
+      // Show audio only for Day 3
+      if (currentIndex === 2) {
+        audioPlayerContainer.innerHTML = `
+          <audio controls>
+            <source src="https://files.divineflaver.com/uploads/music/Bethel%20Music%20-%20No%20Longer%20Slaves.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        `;
+      } else {
+        audioPlayerContainer.innerHTML = "";
       }
 
       document.getElementById("prevBtn").disabled = currentIndex === 0;
@@ -217,12 +166,7 @@
       }
     }
 
-    function playMusic() {
-      const audio = document.getElementById("bgAudio");
-      audio.play();
-    }
-
-    // Initialize
+    // Initialize on page load
     updateContent();
   </script>
 </body>
