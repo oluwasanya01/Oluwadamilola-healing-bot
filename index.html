@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f3e5f5; /* Light Purple */
+            background-color: #f3e5f5;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,10 +20,11 @@
             text-align: center;
             padding: 30px;
             border-radius: 10px;
-            background-color: #6a1b9a; /* Deep Purple */
+            background-color: #6a1b9a;
             color: white;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1.5s ease-in-out;
+            width: 90%;
+            max-width: 600px;
         }
 
         .title {
@@ -34,9 +35,14 @@
 
         .message {
             font-size: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             font-weight: 300;
             line-height: 1.6;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
         }
 
         .btn {
@@ -44,30 +50,67 @@
             color: #6a1b9a;
             border: none;
             padding: 12px 20px;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 5px;
             transition: transform 0.3s ease-in-out;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            font-family: 'Poppins', sans-serif;
-            letter-spacing: 1px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            font-weight: 500;
         }
 
         .btn:hover {
             transform: scale(1.1);
-            background-color: #fff3e0; /* Light Orange Glow */
-            color: #4a148c; /* Darker Purple */
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Day 4</h1>
-        <p class="message">Your failure to forgive the specific parent who hurt you could make you relive their past mistakes. Forgiving them means you free yourself from tendencies to repeat their error</p>
-        <a href="more.html" class="btn">😊 Click here for more ❤️</a>
+        <h1 class="title" id="dayTitle">Day 1</h1>
+        <p class="message" id="healingMessage"></p>
+        <div class="nav-buttons">
+            <button class="btn" id="prevBtn" onclick="showPrevious()">Previous</button>
+            <button class="btn" id="nextBtn" onclick="showNext()">Next</button>
+        </div>
     </div>
+
+    <script>
+        const quotes = [
+            "Write a letter to your younger self. What would you say to them knowing all you know now?",
+            "Write a letter to the version of you that experienced the most pain. Assure them of how things have turned out or how you will protect them now.",
+            "If your heart was a physical room, what’s in it right now? Write down what needs to be thrown out and what should be welcomed in.",
+            "If you were to change anything your parents did regarding your upbringing, what would it be? Write down 10 things you would not repeat when you begin having children.",
+            "Think about someone who hurt you deeply. What would you say to them in a letter you won’t send? Let it all out, free of judgment."
+        ];
+
+        let currentIndex = 0;
+
+        function updateContent() {
+            document.getElementById("dayTitle").innerText = `Day ${currentIndex + 1}`;
+            document.getElementById("healingMessage").innerText = quotes[currentIndex];
+            document.getElementById("prevBtn").disabled = currentIndex === 0;
+            document.getElementById("nextBtn").disabled = currentIndex === quotes.length - 1;
+        }
+
+        function showPrevious() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateContent();
+            }
+        }
+
+        function showNext() {
+            if (currentIndex < quotes.length - 1) {
+                currentIndex++;
+                updateContent();
+            }
+        }
+
+        // Initialize on page load
+        updateContent();
+    </script>
 </body>
 </html>
