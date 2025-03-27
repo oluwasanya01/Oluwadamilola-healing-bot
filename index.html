@@ -27,7 +27,7 @@
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
       width: 90%;
       max-width: 600px;
-      margin-bottom: 80px; /* give space for footer */
+      margin-bottom: 100px; /* space for footer */
     }
 
     .title {
@@ -66,6 +66,7 @@
     .nav-buttons {
       display: flex;
       justify-content: space-between;
+      margin-top: 20px;
     }
 
     .btn {
@@ -116,6 +117,26 @@
         transform: translateX(-100%);
       }
     }
+
+    .music-control {
+      margin: 15px 0;
+    }
+
+    .music-control button {
+      background-color: white;
+      color: #6a1b9a;
+      border: none;
+      padding: 10px 18px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .music-control button:hover {
+      background-color: #f0c8ff;
+    }
   </style>
 </head>
 <body>
@@ -123,19 +144,25 @@
     <h1 class="title" id="dayTitle">Day 1</h1>
     <p class="message" id="healingMessage"></p>
     <div class="click-more" id="clickMoreContainer"></div>
+
+    <!-- Music Control -->
+    <div class="music-control">
+      <button onclick="playMusic()">Play Music</button>
+    </div>
+
     <div class="nav-buttons">
       <button class="btn" id="prevBtn" onclick="showPrevious()">Previous</button>
       <button class="btn" id="nextBtn" onclick="showNext()">Next</button>
     </div>
   </div>
 
-  <!-- Background Music -->
-  <audio autoplay loop>
+  <!-- Audio Element -->
+  <audio id="bgAudio" loop>
     <source src="https://audio.jukehost.co.uk/No-Longer-Slaves.mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
 
-  <!-- Moving Footer Message -->
+  <!-- Moving Footer -->
   <div class="footer-note-container">
     <div class="footer-note">
       Your healing bot is censored, meaning information here will not be shared to the public.
@@ -190,7 +217,12 @@
       }
     }
 
-    // Initialize on page load
+    function playMusic() {
+      const audio = document.getElementById("bgAudio");
+      audio.play();
+    }
+
+    // Initialize
     updateContent();
   </script>
 </body>
