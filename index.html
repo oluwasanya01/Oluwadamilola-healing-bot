@@ -45,9 +45,19 @@
         }
 
         .click-more a {
-            color: #fff;
-            font-weight: 500;
-            text-decoration: underline;
+            background-color: #fff;
+            color: #6a1b9a;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .click-more a:hover {
+            background-color: #f0c8ff;
         }
 
         .nav-buttons {
@@ -90,19 +100,19 @@
 
     <script>
         const quotes = [
-            "Healing doesn't mean the damage never existed, it means the damage no longer controls your life ",
-            "Your source of healing is in good relationships. Oluwadamilola you're magnet for great relationships and be sure that it will last",
-            "Release the weight of your parents past mistakes by freeing them from your heart. This will be hard but you must do this to step into your future",
-            "Oluwadamilola Your failure to forgive the specific parent who hurt you, could make you relive their past mistakes. Forgiving them means you free yourself from tendencies to repeat their error",
+            "Healing doesn't mean the damage never existed, it means the damage no longer controls your life.",
+            "Your source of healing is in good relationships. You're a magnet for great relationships and be sure that it will last.",
+            "Release the weight of your parents’ past mistakes by freeing them from your heart. This will be hard, but you must do this to step into your future.",
+            "Your failure to forgive the specific parent who hurt you could make you relive their past mistakes. Forgiving them means you free yourself from tendencies to repeat their error.",
             "Think about someone who hurt you deeply. What would you say to them in a letter you won’t send? Let it all out, free of judgment."
         ];
 
         const moreLinks = [
-            "day1.html",
-            "day2.html",
-            "day3.html",
-            "day4.html",
-            "" // No Click4More for Day 5
+            "",     // Day 1
+            "",     // Day 2
+            "",     // Day 3
+            "day4.html",  // Day 4
+            "day5.html"   // Day 5
         ];
 
         let currentIndex = 0;
@@ -113,7 +123,7 @@
 
             const clickMoreContainer = document.getElementById("clickMoreContainer");
             if (moreLinks[currentIndex]) {
-                clickMoreContainer.innerHTML = `<a href="${moreLinks[currentIndex]}" target="_blank">Click4More</a>`;
+                clickMoreContainer.innerHTML = `<a href="${moreLinks[currentIndex]}" target="_blank">Click4More 😊❤️</a>`;
             } else {
                 clickMoreContainer.innerHTML = "";
             }
