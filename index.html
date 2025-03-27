@@ -35,9 +35,19 @@
 
         .message {
             font-size: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-weight: 300;
             line-height: 1.6;
+        }
+
+        .click-more {
+            margin-bottom: 30px;
+        }
+
+        .click-more a {
+            color: #fff;
+            font-weight: 500;
+            text-decoration: underline;
         }
 
         .nav-buttons {
@@ -71,6 +81,7 @@
     <div class="container">
         <h1 class="title" id="dayTitle">Day 1</h1>
         <p class="message" id="healingMessage"></p>
+        <div class="click-more" id="clickMoreContainer"></div>
         <div class="nav-buttons">
             <button class="btn" id="prevBtn" onclick="showPrevious()">Previous</button>
             <button class="btn" id="nextBtn" onclick="showNext()">Next</button>
@@ -79,11 +90,19 @@
 
     <script>
         const quotes = [
-            "Write a letter to your younger self. What would you say to them knowing all you know now?",
-            "Write a letter to the version of you that experienced the most pain. Assure them of how things have turned out or how you will protect them now.",
-            "If your heart was a physical room, what’s in it right now? Write down what needs to be thrown out and what should be welcomed in.",
-            "If you were to change anything your parents did regarding your upbringing, what would it be? Write down 10 things you would not repeat when you begin having children.",
+            "Healing doesn't mean the damage never existed, it means the damage no longer controls your life ",
+            "Your source of healing is in good relationships. Oluwadamilola you're magnet for great relationships and be sure that it will last",
+            "Release the weight of your parents past mistakes by freeing them from your heart. This will be hard but you must do this to step into your future",
+            "Oluwadamilola Your failure to forgive the specific parent who hurt you, could make you relive their past mistakes. Forgiving them means you free yourself from tendencies to repeat their error",
             "Think about someone who hurt you deeply. What would you say to them in a letter you won’t send? Let it all out, free of judgment."
+        ];
+
+        const moreLinks = [
+            "day1.html",
+            "day2.html",
+            "day3.html",
+            "day4.html",
+            "" // No Click4More for Day 5
         ];
 
         let currentIndex = 0;
@@ -91,6 +110,14 @@
         function updateContent() {
             document.getElementById("dayTitle").innerText = `Day ${currentIndex + 1}`;
             document.getElementById("healingMessage").innerText = quotes[currentIndex];
+
+            const clickMoreContainer = document.getElementById("clickMoreContainer");
+            if (moreLinks[currentIndex]) {
+                clickMoreContainer.innerHTML = `<a href="${moreLinks[currentIndex]}" target="_blank">Click4More</a>`;
+            } else {
+                clickMoreContainer.innerHTML = "";
+            }
+
             document.getElementById("prevBtn").disabled = currentIndex === 0;
             document.getElementById("nextBtn").disabled = currentIndex === quotes.length - 1;
         }
