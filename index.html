@@ -41,6 +41,12 @@
       margin-bottom: 20px;
       font-weight: 300;
       line-height: 1.6;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .message.show {
+      opacity: 1;
     }
 
     .click-more {
@@ -92,7 +98,7 @@
 
     .footer-note-container {
       position: fixed;
-      bottom: 40px; /* raised footer */
+      bottom: 50px;
       width: 100%;
       overflow: hidden;
       background-color: #f3e5f5;
@@ -116,21 +122,6 @@
       100% {
         transform: translateX(-100%);
       }
-    }
-
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in-up {
-      animation: fadeInUp 0.6s ease;
     }
 
     .music-control {
@@ -157,7 +148,7 @@
 <body>
   <div class="container">
     <h1 class="title" id="dayTitle">Day 1</h1>
-    <p class="message fade-in-up" id="healingMessage"></p>
+    <p class="message" id="healingMessage"></p>
     <div class="click-more" id="clickMoreContainer"></div>
 
     <!-- Music Control -->
@@ -173,7 +164,7 @@
 
   <!-- Audio Element -->
   <audio id="bgAudio" loop>
-    <source src="https://audio.jukehost.co.uk/No-Longer-Slaves.mp3" type="audio/mpeg" />
+    <source src="https://divineflaver.com/wp-content/uploads/2021/06/Bethel_Music_-_No_Longer_Slaves_(Divineflaver.com).mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
 
@@ -186,11 +177,11 @@
 
   <script>
     const quotes = [
-      "Healing doesn't mean the damage never existed, it means the damage no longer controls your life.",
-      "Your source of healing is in good relationships. You're a magnet for great relationships and be sure that it will last.",
-      "Release the weight of your parents’ past mistakes by freeing them from your heart. This will be hard, but you must do this to step into your future.",
-      "Your failure to forgive the specific parent who hurt you could make you relive their past mistakes. Forgiving them means you free yourself from tendencies to repeat their error.",
-      "Know your defense/Coping mechanism, be extra vigilant when they kick in"
+      "Healing doesn't mean the damage never existed, it means the damage no longer controls your life. ✨🕊️",
+      "Your source of healing is in good relationships. You're a magnet for great relationships and be sure that it will last. ❤️🤝",
+      "Release the weight of your parents’ past mistakes by freeing them from your heart. This will be hard, but you must do this to step into your future. 🧳💔➡️💖",
+      "Your failure to forgive the specific parent who hurt you could make you relive their past mistakes. Forgiving them means you free yourself from tendencies to repeat their error. 🔁⛓️➡️🕊️",
+      "Know your defense/Coping mechanism, be extra vigilant when they kick in. 🛡️⚠️🧠"
     ];
 
     const moreLinks = [
@@ -204,22 +195,24 @@
     let currentIndex = 0;
 
     function updateContent() {
-      document.getElementById("dayTitle").innerText = `Day ${currentIndex + 1}`;
       const messageEl = document.getElementById("healingMessage");
-      messageEl.classList.remove("fade-in-up");
-      void messageEl.offsetWidth; // Trigger reflow
-      messageEl.innerText = quotes[currentIndex];
-      messageEl.classList.add("fade-in-up");
+      messageEl.classList.remove("show");
 
-      const clickMoreContainer = document.getElementById("clickMoreContainer");
-      if (moreLinks[currentIndex]) {
-        clickMoreContainer.innerHTML = `<a href="${moreLinks[currentIndex]}" target="_blank">Click for More 😊❤️</a>`;
-      } else {
-        clickMoreContainer.innerHTML = "";
-      }
+      setTimeout(() => {
+        document.getElementById("dayTitle").innerText = `Day ${currentIndex + 1}`;
+        messageEl.innerText = quotes[currentIndex];
+        messageEl.classList.add("show");
 
-      document.getElementById("prevBtn").disabled = currentIndex === 0;
-      document.getElementById("nextBtn").disabled = currentIndex === quotes.length - 1;
+        const clickMoreContainer = document.getElementById("clickMoreContainer");
+        if (moreLinks[currentIndex]) {
+          clickMoreContainer.innerHTML = `<a href="${moreLinks[currentIndex]}" target="_blank">Click for More 😊❤️</a>`;
+        } else {
+          clickMoreContainer.innerHTML = "";
+        }
+
+        document.getElementById("prevBtn").disabled = currentIndex === 0;
+        document.getElementById("nextBtn").disabled = currentIndex === quotes.length - 1;
+      }, 200);
     }
 
     function showPrevious() {
