@@ -24,16 +24,67 @@
       border-radius: 10px;
       background-color: #6a1b9a;
       color: white;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
       width: 90%;
       max-width: 600px;
-      margin-bottom: 100px; /* space for footer */
+      margin-bottom: 100px;
+      animation: fadeInScale 1s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.2) 100%);
+      transform: rotate(25deg);
+      animation: shimmer 4s linear infinite;
+      z-index: 0;
+    }
+
+    .container > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%) rotate(25deg);
+      }
+      100% {
+        transform: translateX(100%) rotate(25deg);
+      }
+    }
+
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .title {
       font-size: 36px;
       margin-bottom: 20px;
       font-weight: 600;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: slideDownFade 0.8s ease forwards;
+    }
+
+    @keyframes slideDownFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .message {
@@ -42,11 +93,13 @@
       font-weight: 300;
       line-height: 1.6;
       opacity: 0;
-      transition: opacity 0.8s ease-in-out;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
     .message.show {
       opacity: 1;
+      transform: translateY(0);
     }
 
     .click-more {
@@ -196,10 +249,16 @@
 
     function updateContent() {
       const messageEl = document.getElementById("healingMessage");
+      const titleEl = document.getElementById("dayTitle");
+      const container = document.querySelector(".container");
+
       messageEl.classList.remove("show");
+      container.style.animation = "none";
+      container.offsetHeight; // re-trigger animation
+      container.style.animation = "fadeInScale 1s ease";
 
       setTimeout(() => {
-        document.getElementById("dayTitle").innerText = `Day ${currentIndex + 1}`;
+        titleEl.innerText = `Day ${currentIndex + 1}`;
         messageEl.innerText = quotes[currentIndex];
         messageEl.classList.add("show");
 
@@ -234,7 +293,6 @@
       audio.play();
     }
 
-    // Initialize
     updateContent();
   </script>
 </body>
